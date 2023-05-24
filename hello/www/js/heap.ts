@@ -44,12 +44,12 @@ export function loadHeap() {
           window.heap[p[o]] = n(p[o]);
         }
       };
-      // debug('loading heap');
-      window.heap.load(heapKey, {
-        secureCookie: true // tested with and without this - but I think this requires a heap account setting change I didn't test.
-      });
     }
     setTimeout(() => {
+      // debug('loading heap');
+      window.heap.load(heapKey, {
+        // secureCookie: true // tested with and without this - but I think this requires a heap account setting change I didn't test.
+      });
       window.heap.identify(user.id);
       const { agencyId, agencyName } = {agencyId: 0, agencyName: 'sstmetro'};
       window.heap.addUserProperties({
