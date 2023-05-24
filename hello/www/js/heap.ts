@@ -46,7 +46,7 @@ export function loadHeap() {
       };
       // debug('loading heap');
       window.heap.load(heapKey, {
-        secureCookie: true
+        secureCookie: true // tested with and without this - but I think this requires a heap account setting change I didn't test.
       });
     }
     setTimeout(() => {

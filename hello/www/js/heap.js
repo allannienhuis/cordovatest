@@ -36,26 +36,28 @@ export function loadHeap() {
             };
             // debug('loading heap');
             window.heap.load(heapKey, {
-                secureCookie: true
+                secureCookie: true // tested with and without this - but I think this requires a heap account setting change I didn't test.
             });
         }
-        window.heap.identify(user.id);
-        const { agencyId, agencyName } = user.getAgencyInfo();
-        window.heap.addUserProperties({
-            createdAt: user.createdAt,
-            agencyId,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            agencyName
-        });
-        window.heap.addEventProperties({
-            app_environment: 'int',
-            app_name: 'shotspotter',
-            app_platform: 'web',
-            app_version: '0.0.0'
-        });
-        // debug('heap configured');
+        setTimeout(() => {
+            window.heap.identify(user.id);
+            const { agencyId, agencyName } = { agencyId: 0, agencyName: 'sstmetro' };
+            window.heap.addUserProperties({
+                createdAt: user.createdAt,
+                agencyId,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                agencyName
+            });
+            window.heap.addEventProperties({
+                app_environment: 'int',
+                app_name: 'shotspotter',
+                app_platform: 'web',
+                app_version: '0.0.0'
+            });
+            // debug('heap configured');
+        }, 1000);
     }
     catch (ex) {
         console.error(ex);
